@@ -50,7 +50,7 @@
                 </configuration>
             </plugin>
 
-            <!-- 🔥 FAT JAR / Uber jar (Fixes NoClassDefFoundError) -->
+            <!-- FAT JAR / Uber jar (Fixes NoClassDefFoundError) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
