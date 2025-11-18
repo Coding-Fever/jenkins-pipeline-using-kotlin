@@ -36,7 +36,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Make JAR runnable -->
+            <!-- Regular JAR (still needed but not enough alone) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -44,11 +44,32 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <!-- IMPORTANT: Your App class -->
                             <mainClass>com.example.HelloApp</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
+            </plugin>
+
+            <!-- 🔥 FAT JAR / Uber jar (Fixes NoClassDefFoundError) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.example.HelloApp</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>
